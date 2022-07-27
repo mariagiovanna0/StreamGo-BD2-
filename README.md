@@ -4,4 +4,4 @@ Il progetto è stato realizzato per il corso di Base di Dati 2 a cure della prof
 L'biettivo è quello di memorizzare e manipolare dati attraverso database noSQL (mongoDB)
 Documentazione e descrizione delle tecnologie utilizzate sono presenti nella cartella Presentazione.
 
-# MGA
+ MGA
