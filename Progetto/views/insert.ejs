@@ -1,0 +1,138 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        Suggerisci
+    </title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/checkout/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+
+        .topnav {
+            overflow: hidden;
+            background-color: #f8f8f8;
+        }
+
+            .topnav a {
+                float: left;
+                color: gray;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .topnav a:hover {
+                    background-color: #f8f8f8;
+                    color: black;
+                }
+
+                .topnav a.active {
+                    background-color: #337ab7;
+                    color: white;
+                }
+    </style>
+</head>
+<body>
+	<!-- Header intestazione -->
+	<header class="navbar" style="background-color: #0D6CFD;">
+		<div class="container">
+			<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+				<a href="/" style="color: #fff">
+					<h5>StreamGo</h5>
+				</a>
+				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+					<li>
+						<p>
+					</li>
+					<li>
+						<p>
+					</li>
+					<li>
+						<p>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+	</header>
+    <div class="container">
+        <div class="icona" style="text-align:center">
+
+            <p><p><p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+              <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+            </svg>
+        </div>
+        <div style="padding-left:16px">
+            <h2 align="center">Aggiungi</h2>
+            <hr><br>
+             <form class="row g-3" action="/suggerisci/insert" method="POST">
+                <div class="row">
+                    <div class="col-sm-5 col-md-6">
+						<!-- INSERISCI TITOLO -->
+                        <label for="inputNome" class="sr-only">Titolo </label>
+                        <input type="text" id="inputNome" name="titolo" class="form-control" placeholder="myTitolo" required autofocus>
+                    <p></div>
+                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                        <label for="inputGenere" class="sr-only">Genere </label>
+                        <select class="form-control" title="Genere " name="genere">
+                            <optgroup label="Genere">
+                                <option value="Drama">Drama</option>
+                                <option value="War">War</option>
+                                <option value="Comedy">Comedy</option>
+                                <option value="Thriller">Thriller</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-5 col-lg-6">
+						<!-- inserisci lingua -->
+                        <label for="inputLingua" class="sr-only">Lingua </label>
+                        <input type="text" id="inputLingua" name="lingua" class="form-control" placeholder="Italian" required autofocus>
+                    </div>
+               <p> </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-5 col-lg-6">
+						<!-- inserisci anno -->
+                        <label for="inputTime" class="sr-only">Anno di uscita </label>
+                        <input type="number" id="inputTime" name="anno" class="form-control" placeholder="2022" required autofocus>
+                    </div>
+                    <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0">
+						<!-- inserisci descrizioni -->
+                        <label for="inputPlot" class="sr-only">Trama </label>
+                        <textarea id="w3review" name="descrizione" rows="4" cols="50">
+
+                </textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+						<!-- tipologia (film o serie tv) -->
+                        <p class="fs-6">Tipologia:</p>
+                        <select class="form-control" title="tipo" name="tipo">
+                            <optgroup label="Tipo">
+                                <option value="SHOW">Serie Tv</option>
+                                <option value="MOVIE">Film</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <br><br><button class="btn btn-primary " type="submit">Aggiungi</button>
+                </div>
+            </form>
+            <!--  Risultato (INSERITO/NON INSERITO (perchè già presente, controllo in base al titolo)) -->
+           <h1> <%= esito %> </h1>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+
+</html>

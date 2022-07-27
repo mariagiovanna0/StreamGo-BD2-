@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Curiosita</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/checkout/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+
+    <script type="text/javascript" src="../sever.js"> </script>
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header intestazione -->
+    <header class="navbar" style="background-color: #0D6CFD;">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                <a href="/" style="color: #fff">
+                    <h5>StreamGo</h5>
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><p></li>
+                    <li><p></li>
+                    <li><p></li>
+                </ul>
+
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <br><br>
+
+        <div class="row">
+            <div class="col">
+                <canvas id="myChart" width="1000" height="600"> </canvas>
+            </div>
+            <div class="col-md-auto">
+                <div class="table-responsive" align="center">
+                    <table class="table table-striped table-sm" id="myTable" >
+                        <thead>
+                            <tr>
+                                <th scope="col">Anno</th>
+                                <th scope="col">Media voti</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=1; i < dati.length; i++) {%>
+                            <tr>
+
+                                <td><%=dati[i]._id %></td>
+                                <td> <%=dati[i].somma/dati[i].count  %></td>
+                            </tr>
+                            <% }%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <br><hr><br>
+        <div class="row">
+            <div class="col">
+                <canvas id="myChartLingue" width="800" height="800"> </canvas>
+            </div>
+            <div class="col-md-auto">
+                <table class="table table-striped table-sm" id="myTableLingue">
+                    <thead>
+                        <tr>
+                            <th scope="col">Lingua</th>
+                            <th scope="col"># Titoli</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=1; i < datilingua.length; i++) {%>
+                        <tr>
+
+                            <td><%=datilingua[i]._id %></td>
+                            <td> <%=datilingua[i].count  %></td>
+                        </tr>
+                        <% }%>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col col-lg-2">
+               <h1<span id="cazzo"></span></h1>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- script primo grafico (anno) -->
+    <script>var table = document.getElementById("myTable");
+        var anno=[]
+        var media=[]
+         for (var i = 1, row; row = table.rows[i]; i++)  {
+             anno[i] = row.cells[0].innerHTML
+             media[i] = row.cells[1].innerHTML
+        }
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: anno,
+                datasets: [{
+                    label: 'Punteggio finale',
+                    data: media,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }, responsive:false
+            }
+        });</script>
+
+    <!-- script secondo grafico (Lingua ) -->
+    <script>var table = document.getElementById("myTableLingue");
+        var lingua=[]
+        var media=[]
+            media[7]=0
+        var x=0    
+        var y=0
+         for (var i = 1, row; row = table.rows[i]; i++)  {
+                if(i<=7){
+                    lingua[i-1] = row.cells[0].innerHTML
+                    media[i-1] = row.cells[1].innerHTML
+                }else{
+                    lingua[7]="Altro"
+                    x= parseInt(media[7])
+                    y= parseInt(row.cells[1].innerHTML)
+                    media[7]= x+y
+                    
+                }
+             
+        }
+        document.getElementById("cazzo").innerHTML = media[7];
+        const ctx2 = document.getElementById('myChartLingue').getContext('2d');
+        const myChartLingue = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+               labels:lingua,
+                      datasets: [{
+                        label: 'raggruppamento per lingua',
+                        data:media,
+                        backgroundColor: [
+                        'rgba(54, 162, 235)',
+                        'rgba(255, 99, 132)',
+                        'rgba(255, 206, 86)',
+                        'rgba(75, 192, 192)',
+                        'rgba(153, 102, 255)',
+                        'rgba(154,205,50)',
+                        'rgba(144,238,144)',
+                        'rgba(211,211,211)'
+
+                        ],
+                        hoverOffset: 4
+                      }]
+            },
+             options: {
+                responsive: false
+            }
+            
+        });</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+

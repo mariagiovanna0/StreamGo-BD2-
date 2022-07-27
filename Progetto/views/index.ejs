@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>StreamGo</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/checkout/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+            .nav-scroller .nav {
+                display: flex;
+                flex-wrap: nowrap;
+                padding-bottom: 1rem;
+                margin-top: -1px;
+                overflow-x: auto;
+                text-align: center;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+  
+</head>
+<body class="bg-light">
+
+    <!-- Header intestazione -->
+    <nav class="navbar" style="background-color: #0D6CFD;">
+        <div class="container-fluid">
+            <a  href="/" style="color: #fff" class="navbar-brand">StreamGO</a>
+             <form action="/top10" method="POST">
+                        <button type="submit" class="btn btn-light" >Top10</button>
+             </form>
+            
+
+            <form class="d-flex" role="search" action="/title" method="POST">
+              <div class="input-group mb-3">
+              <input name="titolo" class="form-control" type="search" placeholder="Search" aria-label="Search"  aria-describedby="button-addon2">
+            <button class="btn btn-light"" type="submit" id="button-addon2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg></button>
+             </div>
+            </form>
+             
+         </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+		 <form class="row g-3" action="/genere/lingua" method="POST">
+            <div class="col">
+                <!-- Form per inserire dati Genere -->            
+                    <div class="col-auto">
+                        <label for="inputgenere">Genere</label>
+						<input name="genere" type="text" class="form-control" id="genere" placeholder="Genere" value="all">
+                    </div>                  
+            </div>
+            <div class="col">
+                <!-- Form per inserire i dati lingua -->
+                    <div class="col-auto">
+                        <label for="inputlingua" >Lingua: </label>
+						<input name="lingua" type="text" class="form-control" id="lingua" placeholder="Lingua" value="all">
+                    </div>
+            </div>
+			 <div class="col">
+				 <div class="col-auto">
+					 <button type="submit" class="btn btn-primary mb-3">
+						 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+							 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+						 </svg>
+					 </button>
+				 </div>
+			 </div>
+			 </form>	 
+        </div>
+		<br>
+			
+			
+        <div class="row">
+			<div class="col">
+				<!-- Form per inserire i dati (ANNO DI USCITA) -->
+				<form class="row g-3" action="/years" method="POST">
+					<div class="col-auto">
+
+						<select class="form-control" title="Anno di uscita " name="anno">
+							<optgroup label="Anno di uscita">
+								<option value="2">ultimi 2 anni</option>
+								<option value="5">ultimi 5 anni</option>
+								<option value="10">ultimi 10 anni</option>
+								<option value="20">ultimi 20 anni</option>
+							</optgroup>
+						</select>
+					</div>
+					<div class="col-auto">
+						<button type="submit" class="btn btn-primary mb-3">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+								<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+							</svg>
+						</button>
+					</div>
+				</form>
+			</div>
+            <div class="col">
+                <!-- Form per inserire dati (Attori in base al titolo) -->
+                <form class="row g-3" action="/attori" method="POST">
+                    <div class="col-auto">
+                        <label for="inputTitolo" class="visually-hidden">Anno di uscita</label>
+                        <input name="titolo" type="text" class="form-control" id="titolo" placeholder="Titolo per Attori">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-hearts" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd" d="M11.5 1.246c.832-.855 2.913.642 0 2.566-2.913-1.924-.832-3.421 0-2.566ZM9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276ZM15 2.165c.555-.57 1.942.428 0 1.711-1.942-1.283-.555-2.281 0-1.71Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col">
+                <form class="row g-3" action="/suggerisci" method="POST">
+                <button type="submit" class="btn btn-outline-primary">Suggerisci!</button>
+                </form>
+            </div>
+
+            <div class="col">
+                <form class="row g-3" action="/curiosita" method="POST">
+                <button type="submit" class="btn btn-outline-primary">Curiosità</button>
+                </form>
+            </div>
+        </div>
+   </div>     
+    </div>
+    <!-- Inizio tabella  VISUALIZZAZIONE-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"> # </th>
+                <th scope="col"> Titolo</th>
+                <th scope="col">Genere</th>
+                <th scope="col"> Pubblicazione</th>
+                <th scope="col"> Lingua</th>
+                <th scope="col"> Tipo</th>
+                <th scope="col"> Descrizione</th>
+                <th scope="col"> Uscita</th>
+                <th scope="col"> Produttore</th>
+                <th scope="col"> Votato </th>
+                <th scope="col"> Voto</th>
+                <th scope="col">  </th>
+
+            </tr>
+        </thead>
+        <tbody>
+        <% for(var i=0; i < user.length; i++) {%>
+            <tr>
+                <th scope="row"> <%= i+1 %> </th>
+                <td><%=user[i].Title %></td>
+                <td><%=user[i].Genre %></td>
+                <td><span class="d-inline-block text-truncate" style="max-width: 148px;"><%=user[i].Premiere %></span></td>
+                <td><%=user[i].Language %></td>
+                <td><%=user[i].type %></td>
+                <td><%=user[i].description %></td>
+                <td>
+                     <%=user[i].release_year %>
+                </td>
+
+                
+                <td><%=user[i].production_countries %></td>
+                <td><%=user[i].imdb_votes %> utenti</td>
+                <td><%=user[i].IMDB_Score%></td>
+                <td> <a href="https://www.imdb.com/title/<%=user[i].imdb_id%>"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+</svg></a> </td>
+                
+            </tr>
+        <% }%>
+        </tbody>
+    </table>
+    </div>
+    
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2022/23 Albanese Maria Giovanna & Labanca Paolo</p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="form-validation.js"></script>
+</body>
+</html>
+
